@@ -7,7 +7,7 @@ processor = Processor.new
 
 threads = []
 
-5.times do |x|
+3.times do |x|
   threads << Thread.new do
     loop do
       if !queue.empty?

@@ -18,6 +18,11 @@ threads = []
         end
       end
       processor.processing data, x if data != 0
+      #if !data.nil?
+      #  processor.processing data, x
+      #else
+      #  processor.no_data
+      #end
     end
   end
 end

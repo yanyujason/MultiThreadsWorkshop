@@ -3,7 +3,7 @@ require '../lib/sleep_queue'
 require '../lib/processor'
 require '../lib/semaphore.rb'
 
-queue = SleepQueue.new [1,2,3,4,5,6,7,8,9]
+queue = SleepQueue.new [1, 2, 3, 4, 5, 6, 7, 8, 9]
 processor = Processor.new
 
 mutex = Mutex.new
@@ -21,7 +21,7 @@ thread_number.times do |x|
   threads << Thread.new do
     loop do
       semaphore.synchronize do
-        data = 0
+        data = nil
         mutex.synchronize do
           if !queue.empty?
             data = queue.pop
@@ -29,7 +29,11 @@ thread_number.times do |x|
             resource.wait mutex
           end
         end
-        processor.processing data, x if data != 0
+        if !data.nil?
+          processor.processing data, x
+        else
+          processor.no_data
+        end
       end
     end
   end

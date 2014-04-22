@@ -16,11 +16,10 @@ class SleepQueue
     temp_data << num
     sleep 1
     @data = temp_data
-    @data
   end
 
   def empty?
-    @data.empty? ? true : false
+    @data.empty?
   end
 
 end

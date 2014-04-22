@@ -27,6 +27,12 @@ thread_number.times do |x|
         end
         processor.processing data, x if data != 0
         #sleep 2
+
+        #if !data.nil?
+        #  processor.processing data, x
+        #else
+        #  processor.no_data
+        #end
       end
     end
   end

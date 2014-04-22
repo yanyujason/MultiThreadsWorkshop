@@ -16,4 +16,8 @@ class Processor
     p "Producer creates #{data}"
   end
 
+  def no_data
+    p "NO DATA!!!!!!"
+  end
+
 end

@@ -19,13 +19,17 @@ thread_number.times do |x|
   threads << Thread.new do
     loop do
       semaphore.synchronize do
-        data = 0
+        data = nil
         mutex.synchronize do
           if !queue.empty?
             data = queue.pop
           end
         end
-        processor.processing data, x if data != 0
+        if !data.nil?
+          processor.processing data, x
+        else
+          processor.no_data
+        end
       end
     end
   end
